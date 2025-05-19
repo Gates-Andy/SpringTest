@@ -1,20 +1,24 @@
 package com.andy.test.Test02;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/lifecycle/test02")
 public class Test02Controller {
 
-	@RequestMapping("/lifecycle/test02/1")
-	public List<Map<String, Object>> listResponse() {
+	@RequestMapping("/1")
+	public List<Map<String, Object>> listMapResponse() {
 
-		List<Map<String, Object>> mapList = new ArrayList<>();
+		List<Map<String, Object>> movieList = new ArrayList<>();
 
 		Map<String, Object> movie1 = new HashMap<>();
 		movie1.put("rate", 15);
@@ -46,17 +50,46 @@ public class Test02Controller {
 		movie5.put("time", 137);
 		movie5.put("title", "Hunger Game");
 
-		mapList.add(movie1);
-		mapList.add(movie2);
-		mapList.add(movie3);
-		mapList.add(movie4);
-		mapList.add(movie5);
-
-		return mapList;
+		movieList.add(movie1);
+		movieList.add(movie2);
+		movieList.add(movie3);
+		movieList.add(movie4);
+		movieList.add(movie5);
+		
+		// movie1 = new HashMap<>(); 를 계속 사용해서 해도된다. heap영역 add로서 list에 넣어진 뒤 사라짐
+		return movieList;
 	}
-	@RequestMapping("/lifecycle/test02/2")
-	public Test02userBoard userBoardResponse() {
-		Test02userBoard userBoard = new Test02userBoard("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
-		return userBoard;
+
+	@RequestMapping("/2") 
+	public List<Test02userBoard> userBoardResponse() {
+		Test02userBoard userBoard1 = new Test02userBoard("안녕하세요 가입인사 드립니다.", "hangulu",
+				"안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+		Test02userBoard userBoard2 = new Test02userBoard("헐 대박", "bada", "오늘 목요일이였어... 금요일인줄");
+		Test02userBoard userBoard3 = new Test02userBoard("오늘 데이트 한 이야기 해드릴게요", "dulumary", "...");
+		return Arrays.asList(userBoard1, userBoard2, userBoard3);
+	}
+	
+//	@RequestMapping("/lifecycle/test02/2") 
+//	public List<Post> listObjectResponse() {
+//		
+//		List<Post> postList = new ArrayList<>();
+//		
+//		Post post = new Post("안녕하세요 가입인사 드립니다.", "hangulu",
+//				"안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+//		postList.add(post);
+//		
+//		postList.add(new("","",""));
+//		postList.add(new("","",""));
+//	
+//		return postList;
+//	}
+	
+	@RequestMapping("/3") 
+	public ResponseEntity<Post> entutyResponse(){
+		Post post = new Post("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+		
+		ResponseEntity entity = new ResponseEntity<>(post,HttpStatus.INTERNAL_SERVER_ERROR);
+		
+		return entity;
 	}
 }
