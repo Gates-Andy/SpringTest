@@ -21,6 +21,7 @@ public class Test01Controller {
 				+ "</body>"
 				+ "</html>";
 	}
+	
 	@ResponseBody
 	@RequestMapping("/lifecycle/test01/2")
 	public Map<String,Integer> mapResponse(){
