@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Test02Controller {
-	@RequestMapping("/lifecycle/test02/1")
 
+	@RequestMapping("/lifecycle/test02/1")
 	public List<Map<String, Object>> listResponse() {
 
 		List<Map<String, Object>> mapList = new ArrayList<>();
@@ -27,19 +27,19 @@ public class Test02Controller {
 		movie2.put("director", "로베르토 베니니");
 		movie2.put("time", 116);
 		movie2.put("title", "인생은 아름다워");
-		
+
 		Map<String, Object> movie3 = new HashMap<>();
 		movie3.put("rate", 12);
 		movie3.put("director", "Christopher Nolan");
 		movie3.put("time", 147);
 		movie3.put("title", "Inception");
-		
+
 		Map<String, Object> movie4 = new HashMap<>();
 		movie4.put("rate", 19);
 		movie4.put("director", "윤종빈");
 		movie4.put("time", 133);
 		movie4.put("title", "범죄와의 전쟁 : 나쁜놈들 전성시대");
-		
+
 		Map<String, Object> movie5 = new HashMap<>();
 		movie5.put("rate", 15);
 		movie5.put("director", "Francis Lawrence");
@@ -53,5 +53,10 @@ public class Test02Controller {
 		mapList.add(movie5);
 
 		return mapList;
+	}
+	@RequestMapping("/lifecycle/test02/2")
+	public Test02userBoard userBoardResponse() {
+		Test02userBoard userBoard = new Test02userBoard("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+		return userBoard;
 	}
 }
