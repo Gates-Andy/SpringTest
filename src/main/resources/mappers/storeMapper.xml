@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- #5 mapper package xml -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.andy.test.database.repository.StoreRepository">
+	<select id="selectStoreList"
+		resultType="com.andy.test.database.domain.Store"> <!-- id의배정은 어떻게 되는것인가 -->
+		SELECT
+		 `id`
+		,`name`
+		,`phoneNumber`
+		,`address`
+		,`businessNumber`
+		,`introduce`
+		,`createdAt`
+		,`updatedAt`
+		FROM
+		`store`
+	</select>
+</mapper>
