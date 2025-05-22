@@ -84,5 +84,13 @@ public class RealEstate {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
+	// 우리가 사용하는 프레임워크에서 필요로하는 라이브러리니까 사용하는거다 라는걸 이해해야함
 }
+//⚙ 왜 이런 클래스가 필요한가?
+//Spring + MyBatis 구조에서는 다음과 같은 이유로 필요합니다:
+//
+//쿼리 결과를 담을 객체가 필요 → MyBatis는 SQL 결과를 어떤 객체에 매핑할지 알아야 함
+//
+//비즈니스 로직 처리에 데이터 구조가 필요 → 서비스 계층에서 이 객체를 이용해 로직 구현
+//
+//클라이언트에 JSON으로 반환 → Controller에서 객체를 JSON으로 바꿔서 응답

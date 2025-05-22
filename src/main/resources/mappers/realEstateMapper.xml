@@ -5,7 +5,7 @@
 <mapper
 	namespace="com.andy.test.mybatis.repository.RealEstateRepository">
 	<select id="selectRealEstate" parameterType="int"
-	resultType="com.andy.test.mybatis.domain.RealEstate">
+		resultType="com.andy.test.mybatis.domain.RealEstate">
 		SELECT
 		`id`
 		,`realtorId`
@@ -21,4 +21,67 @@
 		WHERE
 		`id` = #{id}
 	</select>
+
+	<select id="selectRealEstateByRentPrice" parameterType="int"
+		resultType="com.andy.test.mybatis.domain.RealEstate">
+		SELECT
+		`id`
+		,`realtorId`
+		,`address`
+		,`area`
+		,`type`
+		,`price`
+		,`rentPrice`
+		,`createdAt`
+		,`updatedAt`
+		FROM
+		`real_estate`
+		WHERE
+		`rentPrice` <![CDATA[<]]>
+		#{rentPrice}
+		<!-- or -->
+		<!-- <![CDATA[ `rentPrice` < #{rentPrice} ]]> -->
+	</select>
+
+	<!-- 2개이상이니까 map임 -->
+	<select id="selectRealEstateByAreaAndPrice" parameterType="map"
+		resultType="com.andy.test.mybatis.domain.RealEstate">
+		SELECT
+		`id`
+		,`realtorId`
+		,`address`
+		,`area`
+		,`type`
+		,`price`
+		,`rentPrice`
+		,`createdAt`
+		,`updatedAt`
+		FROM
+		`real_estate`
+		WHERE <![CDATA[
+			`area` >= #{area} AND `price` <= #{price}
+				]]>
+	</select>
+
+	<insert id="insertRealEstateByObject"
+		parameterType="com.andy.test.mybatis.domain.RealEstate">
+		INSERT INTO
+		`real_estate`
+		(
+		`realtorId`
+		,`address`
+		,`area`
+		,`type`
+		,`price`
+		)
+		VALUE
+		(
+		#{realtorId}
+		,#{address}
+		,#{area}
+		,#{type}
+		,#{price}
+		)
+	</insert>
+
 </mapper>
