@@ -8,7 +8,7 @@
 	<select id="selectStoreList"
 		resultType="com.andy.test.database.domain.Store"> <!-- id의배정은 어떻게 되는것인가 -->
 		SELECT
-		 `id`
+		`id`
 		,`name`
 		,`phoneNumber`
 		,`address`

@@ -18,7 +18,7 @@ public class StoreService {
 	// #2 가게 정보 목록 얻어 오기
 	public List<Store> getStoreList() {
 		// 기능
-		List<Store> storeList = storeRepository.selectStoreList(); 
+		List<Store> storeList = storeRepository.selectStoreList();
 		// 여기서 한번 끊고!무조건 레퍼지토리를 하는게 아니라 목적이 명확하니 리턴된걸 그대로 리턴
 		return storeList;
 	}

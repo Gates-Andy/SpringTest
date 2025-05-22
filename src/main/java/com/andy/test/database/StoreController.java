@@ -17,12 +17,12 @@ public class StoreController {
 	private StoreService storeService;
 
 	// #1 가게 정보를 모두 response에 담는다
-	@RequestMapping("/db/store/list") 
 	@ResponseBody
+	@RequestMapping("/db/store/list")
 	public List<Store> storeList() {
 		// 가게 정보 목록 얻어 오기
 		List<Store> storeList = storeService.getStoreList();
-		
+
 		return storeList;
 	}
 }

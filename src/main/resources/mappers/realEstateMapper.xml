@@ -2,10 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.andy.test.mybatis.repository.RealEstateRepository">
-	<select id="selectRealEstate" parameterType="int"
-		resultType="com.andy.test.mybatis.domain.RealEstate">
+<mapper namespace="com.andy.test.mybatis.repository.RealEstateRepository">
+	<select id="selectRealEstate" parameterType="int" resultType="com.andy.test.mybatis.domain.RealEstate">
 		SELECT
 		`id`
 		,`realtorId`
@@ -22,8 +20,7 @@
 		`id` = #{id}
 	</select>
 
-	<select id="selectRealEstateByRentPrice" parameterType="int"
-		resultType="com.andy.test.mybatis.domain.RealEstate">
+	<select id="selectRealEstateByRentPrice" parameterType="int" resultType="com.andy.test.mybatis.domain.RealEstate">
 		SELECT
 		`id`
 		,`realtorId`

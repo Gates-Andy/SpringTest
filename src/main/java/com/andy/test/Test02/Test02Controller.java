@@ -62,11 +62,13 @@ public class Test02Controller {
 
 	@RequestMapping("/2") 
 	public List<Test02userBoard> userBoardResponse() {
-		Test02userBoard userBoard1 = new Test02userBoard("안녕하세요 가입인사 드립니다.", "hangulu",
-				"안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
+		
+		Test02userBoard userBoard1 = new Test02userBoard("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
 		Test02userBoard userBoard2 = new Test02userBoard("헐 대박", "bada", "오늘 목요일이였어... 금요일인줄");
 		Test02userBoard userBoard3 = new Test02userBoard("오늘 데이트 한 이야기 해드릴게요", "dulumary", "...");
+		
 		return Arrays.asList(userBoard1, userBoard2, userBoard3);
+		
 	}
 	
 //	@RequestMapping("/lifecycle/test02/2") 
@@ -85,7 +87,8 @@ public class Test02Controller {
 //	}
 	
 	@RequestMapping("/3") 
-	public ResponseEntity<Post> entutyResponse(){
+	public ResponseEntity<Post> entityResponse(){
+		
 		Post post = new Post("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
 		
 		ResponseEntity entity = new ResponseEntity<>(post,HttpStatus.INTERNAL_SERVER_ERROR);
