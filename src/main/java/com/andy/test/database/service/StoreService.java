@@ -11,7 +11,10 @@ import com.andy.test.database.repository.StoreRepository;
 @Service
 public class StoreService {
 
-	// 직접관리하면 좋지만 의존성주입을 하여 리포지터리에서부터 객체를 가져올수있다 실제로는 싱글턴패턴
+	// 직접관리하면 좋지만 의존성주입을 하여 리포지터리에서부터 객체를 가져올수있다 
+	// 실제로는 싱글턴패턴
+	// 싱글턴 패턴이란? 애플리케이션이 실행될 때 하나의 인스턴스만 생성해서 계속 공유하는 패턴
+	
 	@Autowired
 	private StoreRepository storeRepository;
 

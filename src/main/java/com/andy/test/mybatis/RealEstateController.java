@@ -19,8 +19,9 @@ public class RealEstateController {
 
 	@ResponseBody
 	@RequestMapping("/select/1")
-	public RealEstate realEstate(@RequestParam("id") int id) { // 리턴타입은 entity 클래스이고 responseBody를 사용하여 JSON
-		// 작성한 realEstate 메서드는 @RequestParam("id")를 통해 HTTP 요청 파라미터로부터 id 값을 받아서 사용
+	public RealEstate realEstate(@RequestParam("id") int id) { 
+		// 리턴타입은 RealEstate 라는 entity 클래스이고 @ResponseBody를 사용하여 JSON으로 표현.
+		// 작성한 realEstate 메서드는 @RequestParam("id")를 통해 HTTP 요청 파라미터로부터 id 값을 받아서 사용.
 		// @RequestParam은 HTTP 요청의 파라미터 값을 자바 메서드의 파라미터로 매핑해주는 Spring의 애노테이션.
 
 		RealEstate realEstate = realEstateService.getRealEstate(id);

@@ -9,14 +9,16 @@ import com.andy.test.mybatis.domain.RealEstate;
 
 @Mapper
 public interface RealEstateRepository {
-
+	
+// select
 	public RealEstate selectRealEstate(@Param("id") int id);
-	// mybatis기반 xml기반으로 조회를 하게 되면 한행을 조회하고 저장하게되는 객체를 리턴타입으로 지정 entity가 좋겠다
+	// mybatis기반 xml기반으로 조회를 하게 되면 한 행을 조회하고 저장하게되는 객체를 리턴타입으로 지정하려는데 그렇다면 entity가 좋겠다
 
 	public List<RealEstate> selectRealEstateByRentPrice(@Param("rentPrice") int rentPrice);
 
 	public List<RealEstate> selectRealEstateByAreaAndPrice(@Param("area") int area, @Param("price") int price);
-
+	// parametertype이 2개 이상일시 xml에 int 가 아닌 map이라고 적는다
+// insert 
 	public int insertRealEstateByObject(RealEstate realEstate);
 
 	public int insertRealEstate(

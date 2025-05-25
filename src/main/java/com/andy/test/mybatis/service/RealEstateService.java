@@ -14,8 +14,8 @@ public class RealEstateService {
 	private RealEstateRepository realEstateRepository; // 맴버변수를 통해서 객체변수를 만들고 객체를 spring이 자동으로 만들어줌
 
 	public RealEstate getRealEstate(int id) {
-		// getRealEstate(int id) Controller로부터 받은 id를 바탕으로, Repository에 있는
-		// selectRealEstate(id)를 호출하여 DB에서 데이터를 가져오고,
+		// getRealEstate(int id) : Controller로부터 받은 id를 바탕으로, 
+		// Repository에 있는 selectRealEstate(id)를 호출하여 DB에서 데이터를 가져오고,
 		// 가져온 RealEstate 객체를 Controller에게 반환합니다.
 
 		RealEstate realEstate = realEstateRepository.selectRealEstate(id); // 인자 전달

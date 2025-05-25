@@ -1,4 +1,4 @@
-package com.andy.test.Test02;
+package com.andy.test.lifecycle.Test02;
 
 public class Post {
 	private String title;
@@ -19,7 +19,7 @@ public class Post {
 		return user;
 	}
 
-	public String getContnent() {
+	public String getContent() {
 		return content;
 	}
 
