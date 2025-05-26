@@ -12,7 +12,8 @@ public class Test01Controller {
 	
 	@ResponseBody
 	@RequestMapping("/lifecycle/test01/1")
-	public String text() {
+	public String text() { //2. String return 을 통해서 아래와 같은 간단한 화면을 구성하세요.
+		
 		return "<html>" 
 				+ "	<head><title>테스트 프로젝트 완성</head></title>\n" 
 				+ "	<body>"
@@ -20,16 +21,20 @@ public class Test01Controller {
 				+ 		"<h2>해당 프로젝트를 통해서 문제 풀이를 진행 합니다.</h2>\n"
 				+ "</body>"
 				+ "</html>";
+		
 	}
 	
 	@ResponseBody
 	@RequestMapping("/lifecycle/test01/2")
-	public Map<String,Integer> mapResponse(){
+	public Map<String,Integer> mapResponse(){ //3. Map 을 통해서 아래와 같은 형태의 json 데이터를 출력하세요.
+		
 		Map<String,Integer> subjectMap = new HashMap<>();
 		subjectMap.put("국어", 80);
 		subjectMap.put("수학", 90);
 		subjectMap.put("영어", 85);
+		
 		return subjectMap;
+		
 	}
 
 }

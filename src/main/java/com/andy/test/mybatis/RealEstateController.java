@@ -16,7 +16,8 @@ import com.andy.test.mybatis.service.RealEstateService;
 public class RealEstateController {
 	@Autowired
 	private RealEstateService realEstateService; // service 변수 가져오기위해 service 객체 변수 만들고
-
+	
+	//1
 	@ResponseBody
 	@RequestMapping("/select/1")
 	public RealEstate realEstate(@RequestParam("id") int id) { 
@@ -28,7 +29,8 @@ public class RealEstateController {
 
 		return realEstate;
 	}
-
+	
+	//2
 	@ResponseBody
 	@RequestMapping("/select/2")
 	public List<RealEstate> realEstateByRentPrice(@RequestParam("rentPrice") int rentPrice) {
@@ -37,7 +39,8 @@ public class RealEstateController {
 
 		return realEstateList;
 	}
-
+	
+	//3
 	@RequestMapping("/select/3")
 	public List<RealEstate> realEstateByAreaAndPrice(@RequestParam("area") int area, @RequestParam("price") int price) {
 
@@ -45,7 +48,8 @@ public class RealEstateController {
 
 		return realEstateList;
 	}
-
+	
+	//4
 	@RequestMapping("/insert/1")
 	public String createRealEstateByObject() {
 		
@@ -61,6 +65,7 @@ public class RealEstateController {
 		return "실행 결과 :" + count;
 	}
 	
+	//5
 	@ResponseBody
 	@RequestMapping("/insert/2")
 	public String createRealEstate(@RequestParam("realtorId") int realtorId) {
@@ -74,6 +79,7 @@ public class RealEstateController {
 		return "입력 성공 : " + count;
 	}
 	
+	//6
 	@ResponseBody
 	@RequestMapping("/update")
 	public String updateRealEstate(){
@@ -83,6 +89,7 @@ public class RealEstateController {
 		return "수정 사항 : " + count;
 	}
 	
+	//7
 	@ResponseBody
 	@RequestMapping("/delete")
 	public String deleteRealEstate(@RequestParam("id") int id) {

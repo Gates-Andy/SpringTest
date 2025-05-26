@@ -24,5 +24,7 @@ public class StoreController {
 		List<Store> storeList = storeService.getStoreList();
 
 		return storeList;
+
 	}
+
 }

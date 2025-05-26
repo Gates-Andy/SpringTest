@@ -2,8 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.andy.test.mybatis.repository.RealEstateRepository">
-	<select id="selectRealEstate" parameterType="int" resultType="com.andy.test.mybatis.domain.RealEstate">
+<mapper
+	namespace="com.andy.test.mybatis.repository.RealEstateRepository">
+
+	<!-- 1번 select -->
+	<select id="selectRealEstate" parameterType="int"
+		resultType="com.andy.test.mybatis.domain.RealEstate">
 		SELECT
 		`id`
 		,`realtorId`
@@ -20,6 +24,7 @@
 		`id` = #{id}
 	</select>
 
+	<!-- 2번 select -->
 	<select id="selectRealEstateByRentPrice" parameterType="int"
 		resultType="com.andy.test.mybatis.domain.RealEstate">
 		SELECT
@@ -41,7 +46,7 @@
 		<!-- <![CDATA[ `rentPrice` < #{rentPrice} ]]> -->
 	</select>
 
-	<!-- 2개이상이니까 map임 -->
+	<!-- 3번 select 2개이상이니까 map임 -->
 	<select id="selectRealEstateByAreaAndPrice" parameterType="map"
 		resultType="com.andy.test.mybatis.domain.RealEstate">
 		SELECT
@@ -61,6 +66,7 @@
 				]]>
 	</select>
 
+	<!-- 4번 insert -->
 	<insert id="insertRealEstateByObject"
 		parameterType="com.andy.test.mybatis.domain.RealEstate">
 		INSERT INTO
@@ -82,6 +88,7 @@
 		)
 	</insert>
 
+	<!-- 5번 insert -->
 	<insert id="insertRealEstate"
 		parameterType="com.andy.test.mybatis.domain.RealEstate">
 		INSERT INTO
@@ -105,6 +112,7 @@
 		)
 	</insert>
 
+	<!-- 6번 update -->
 	<update id="updateRealEstate" parameterType="map">
 		UPDATE
 		`real_estate`
@@ -117,11 +125,12 @@
 		#{id}
 	</update>
 
+	<!-- 7번 delete -->
 	<delete id="deleteRealEstate" parameterType="int">
-		DELETE 
-		FROM 
+		DELETE
+		FROM
 		`real_estate`
-		WHERE 
+		WHERE
 		`id` = #{id}
 	</delete>
 

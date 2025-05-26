@@ -36,7 +36,6 @@ public class Test02userBoard {
 		this.content = content;
 	}
 
-	// 마우스 오른쪽 source 그리고 generate getter setter 근데 왜 어떤건 setter 밖에 없는가
 	@Override
 	public String toString() {
 		return "제목 : " + title + " 작성자 : " + user + "내용 : " + content;

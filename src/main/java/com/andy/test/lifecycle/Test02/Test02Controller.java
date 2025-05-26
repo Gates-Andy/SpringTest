@@ -92,7 +92,7 @@ public class Test02Controller {
 		Post post = new Post("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
 		
 		ResponseEntity entity = new ResponseEntity<>(post,HttpStatus.INTERNAL_SERVER_ERROR);
-		//	ResponseEntity는 HTTP 응답 전체를 표현하는 객체로, 본문(body)에 데이터(post), 상태 코드(HttpStatus.INTERNAL_SERVER_ERROR) 등을 포함할 수 있어요.
+		//	ResponseEntity는 HTTP 응답 전체를 표현하는 스프링 객체로, 본문(body)에 데이터(post), 상태 코드(HttpStatus.INTERNAL_SERVER_ERROR) 등을 포함할 수 있어요.
 		
 		return entity;
 	}

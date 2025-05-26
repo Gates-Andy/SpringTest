@@ -12,40 +12,35 @@ import com.andy.test.mybatis.repository.RealEstateRepository;
 public class RealEstateService {
 	@Autowired
 	private RealEstateRepository realEstateRepository; // 맴버변수를 통해서 객체변수를 만들고 객체를 spring이 자동으로 만들어줌
-
+	
+	//1
 	public RealEstate getRealEstate(int id) {
 		// getRealEstate(int id) : Controller로부터 받은 id를 바탕으로, 
 		// Repository에 있는 selectRealEstate(id)를 호출하여 DB에서 데이터를 가져오고,
 		// 가져온 RealEstate 객체를 Controller에게 반환합니다.
-
 		RealEstate realEstate = realEstateRepository.selectRealEstate(id); // 인자 전달
-
 		return realEstate;
 	}
-
+	
+	//2
 	public List<RealEstate> getRealEstateByRentPrice(int rentPrice) {
-
 		List<RealEstate> realEstateList = realEstateRepository.selectRealEstateByRentPrice(rentPrice);
-
 		return realEstateList;
 	}
-
+	
+	//3
 	public List<RealEstate> getRealEstateByAreaAndPrice(int area, int price) {
-
 		List<RealEstate> realEstateList = realEstateRepository.selectRealEstateByAreaAndPrice(area, price);
-
 		return realEstateList;
-
 	}
-
+	
+	//4
 	public int addRealEstateByObject(RealEstate realEstate) {
-
 		int count = realEstateRepository.insertRealEstateByObject(realEstate);
-
 		return count;
-
 	}
-
+	
+	//5
 	public int addRealEstate(
 			int realtolId
 			, String address
@@ -53,24 +48,19 @@ public class RealEstateService {
 			, String type
 			, int price
 			, int rentPrice){
-		
 		int count = realEstateRepository.insertRealEstate(realtolId, address, area, type, price, rentPrice); // 한 행의 저장
-		
 		return count;
-		
 	}
 	
+	//6
 	public int updateRealEstate(int id, String type, int price) {
-		
 		int count = realEstateRepository.updateRealEstate(id, type, price);
-		
 		return count;
 	}
 	
+	//7
 	public int deleteRealEstate(int id) {
-		
 		int count = realEstateRepository.deleteRealEstate(id);
-		
 		return count;
 	}
 }
