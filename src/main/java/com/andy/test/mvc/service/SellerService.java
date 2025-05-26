@@ -10,10 +10,30 @@ import com.andy.test.mvc.repository.SellerRepository;
 public class SellerService {
 	@Autowired
 	private SellerRepository sellerRepository;
+
+	public int addSellerService(String nickname ,double temperature ,String profileImage) {
+		
+		int count = sellerRepository.insertSellerUser(nickname, temperature, profileImage);
+		
+		return count;
+		
+	}
 	
-	public Seller addSellerService() {
-		Seller seller = sellerRepository.selectSellerUser();
+	public Seller getLastSeller() {
+		
+		Seller seller = sellerRepository.selectLastSeller();
 		
 		return seller;
 	}
+	
+	public Seller getSeller(int id) {
+		
+		Seller seller = sellerRepository.selectSeller(id);
+		
+		return seller;
+		
+	}
+	
 }
+
+

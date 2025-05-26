@@ -1,31 +1,40 @@
 package com.andy.test.mvc.domain;
 
 public class Seller {
-	private String id;
-	private String img;
-	private String temperature;
+	private int id;
+	private String nickname;
+	private double temperature;
+	private String profileImage;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getImg() {
-		return img;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setImg(String img) {
-		this.img = img;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public String getTemperature() {
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
+	}
+
+	public double getTemperature() {
 		return temperature;
 	}
 
-	public void setTemperature(String temperature) {
+	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
 

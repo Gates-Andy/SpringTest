@@ -3,18 +3,47 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.andy.test.mvc.repository.SellerRepository">
-	<select id="SellerRepository"
+	<insert id="insertSellerUser" parameterType="map">
+		INSERT INTO `seller`
+		(
+		`nickname`,
+		`temperature`,
+		`profileImage`
+		)
+		VALUES
+		(
+		#{nickname},
+		#{temperature},
+		#{profileImage}
+		)
+	</insert>
+
+	<select id="selectLastSeller"
 		resultType="com.andy.test.mvc.domain.Seller">
 		SELECT
+		`id`,
+		`nickname`,
+		`temperature`,
+		`profileImage`
 		FROM
 		`seller`
-
-		`id`
-		,`nickname`
-		,`temperature`
-		, `profileImage`
-		,`createdAt`
-		,`updatedAt`
-
+		ORDER BY
+		`id` DESC
+		LIMIT
+		1
 	</select>
+
+	<select id="selectSeller" parameterType="int"
+		resultType="com.andy.test.mvc.domain.Seller">
+		SELECT
+		`id`,
+		`nickname`,
+		`temperature`,
+		`profileImage`
+		FROM
+		`seller`
+		WHERE
+		`id` = #{id}
+	</select>
+	
 </mapper>
