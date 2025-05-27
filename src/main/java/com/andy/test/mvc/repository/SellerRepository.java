@@ -12,8 +12,10 @@ public interface SellerRepository {
 			@Param("nickname")String nickname, 
 			@Param("temperature") double temperature, 
 			@Param("profileImage") String profileImage); 
+	
 	//2
 	public Seller selectLastSeller();
+	
 	//3
 	public Seller selectSeller(@Param("id") int id);
 	

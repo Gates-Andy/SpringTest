@@ -30,7 +30,7 @@
 		ORDER BY
 		`id` DESC
 		LIMIT
-		1
+		1 <!-- ORDER BY DESC LIMIT 1 마지막 한놈 -->
 	</select>
 
 	<select id="selectSeller" parameterType="int"

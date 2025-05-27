@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thymleaf 변수와 조건문</title>
+</head>
+<body>
+	<div th:with="number1 = 36, number2 = 3">
+
+		<h1>1. 변수</h1>
+		<!-- 두 개의 숫자 변수를 만들어서 각각 원하는 수를 저장하고, 아래와 같이 차례로 출력하세요. -->
+		<h3 th:text="|첫번째 숫자 : ${number1}|"></h3>
+		<h3 th:text="|두번째 숫자 : ${number2}|"></h3>
+
+		<h1>2. 산술연산</h1>
+		<!-- 위에서 만든 두 개의 변수의 사칙연산 결과를 아래와 같이 출력하세요. -->
+		<h3 th:text="|더하기: ${number1 + number2}|"></h3>
+		<h3 th:text="|뺴기: ${number1 - number2}|"></h3>
+		<h3 th:text="|곱하기: ${number1 * number2}|"></h3>
+		<h3 th:text="|나누기: ${number1 / number2}|"></h3>
+
+
+		<h1>3. 태그 그대로 출력</h1>
+		<!-- 해당 태그가 태그로써 기능을 하도록 thymeleaf 로 표현하세요. -->
+		<div th:utext="'<h3>안녕하세요</h3>'"></div>
+
+		<h1>4. if와 unless</h1>
+		<!-- 1번 문제에서 사용한 두 변수의 평균이 10 이상이면 평균 값을 <h1> 태그로 출력하고, 10 미만이면 <h3> 태그로 출력하세요. -->
+		<th:block th:with="average = ${(number1 + number2) /2.0}">
+			<h1 th:if="${average >= 10}" th:text="${average}"></h1>
+			<h3 th:unless="${average >= 10}" th:text="${average}"></h3>
+		</th:block>
+		
+	</div>
+
+</body>
+</html>
