@@ -22,7 +22,6 @@ public class ThymleafController {
 	@GetMapping("/test02")
 	public String test02(Model model) {
 		
-		
 		List<String> musicRanking = new ArrayList<>();
 		musicRanking.add("강남스타일");
 		musicRanking.add("벚꽃엔딩");
