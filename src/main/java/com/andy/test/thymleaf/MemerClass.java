@@ -1,7 +1,9 @@
 package com.andy.test.thymleaf;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemerClass {
 	@GetMapping("/thymleaf/test03")
 	public String test03(Model model) {
+		
+		Date date = new Date();
+		LocalDate localDate = LocalDate.now();
+		LocalDateTime localDateTime = LocalDateTime.now();
+		
+		model.addAttribute("date",date);
+		model.addAttribute("localDate",localDate);
+		model.addAttribute("localDateTime",localDateTime);
+		
 		List<Member> members = new ArrayList<>();
 
 		Member member = new Member();
@@ -69,6 +80,9 @@ public class MemerClass {
 		members.add(member);
 
 		model.addAttribute("members", members);
+		
 		return "thymleaf/test03";
+		
 	}
+	
 }

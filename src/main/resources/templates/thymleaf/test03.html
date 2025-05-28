@@ -11,7 +11,8 @@
 
 <body>
 	<div class="container">
-		<table class="table text center">
+		<h1>회원 정보 리스트</h1>
+		<table class="table table-bordered table-sm text-center">
 			<thead>
 				<tr>
 					<th>No</th>
@@ -24,23 +25,32 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th>1</th>
-					<th>유비</th>
-					<th>161년7월9일</th>
-					<th>010-1234-5678</th>
-					<th>삼국-촉한</th>
-					<th>abc@naver.com</th>
-					<th>저는~</th>
-				</tr>
-				<tr>
-					<th>1</th>
-					<th>유비</th>
-					<th>161년7월9일</th>
-					<th>010-1234-5678</th>
-					<th>삼국-촉한</th>
-					<th>abc@naver.com</th>
-					<th>저는~</th>
+				<tr th:each="info, status: ${members}">
+
+					<td th:text="${status.count}">1</td>
+
+					<td th:text="${info.name}">유비</td>
+
+					<td th:text="${#temporals.format(info.birth, 'yyy년 M월 d일')}">161년7월9일</td>
+
+
+					<td>
+					<span th:if="${#strings.startsWith(info.phoneNumber,'010')}" th:text="${info.phoneNumber}"></span> 
+					<span th:unless="${#strings.startsWith(info.phoneNumber,'010')}">유효하지 않은 전화번호</span>
+					</td>
+
+
+					<td th:text="${#strings.replace(info.nationality,'시대','-')}">삼국-촉한</td>
+
+					<td>
+					<span th:utext="|<b>${#strings.arraySplit(info.email, '@')[0]}</b>@${#strings.arraySplit(info.email, '@')[1]}|">abc@naver.com</span>
+					</td>
+
+					<td>
+					<span th:if="${#strings.length(info.introduce) > 15}" th:text="|${info.introduce}...|">저는~</span>
+					<span th:unless="${#strings.length(info.introduce) > 15}" th:text="${info.introduce}">저는~</span>
+					</td>
+					
 				</tr>
 			</tbody>
 		</table>
