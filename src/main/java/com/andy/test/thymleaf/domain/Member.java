@@ -1,4 +1,4 @@
-package com.andy.test.thymleaf;
+package com.andy.test.thymleaf.domain;
 
 import java.time.LocalDate;
 

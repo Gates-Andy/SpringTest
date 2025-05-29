@@ -2,10 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <title>회원 정보 리스트</title>
 </head>
 
@@ -26,31 +23,27 @@
 			</thead>
 			<tbody>
 				<tr th:each="info, status: ${members}">
-
-					<td th:text="${status.count}">1</td>
-
-					<td th:text="${info.name}">유비</td>
-
-					<td th:text="${#temporals.format(info.birth, 'yyy년 M월 d일')}">161년7월9일</td>
-
-
+					<td th:text="${status.count}"></td>
+					<td th:text="${info.name}"></td>
+					<td th:text="${#temporals.format(info.birth, 'yyy년 M월 d일')}"></td>
 					<td>
-					<span th:if="${#strings.startsWith(info.phoneNumber,'010')}" th:text="${info.phoneNumber}"></span> 
-					<span th:unless="${#strings.startsWith(info.phoneNumber,'010')}">유효하지 않은 전화번호</span>
+						<span th:if="${#strings.startsWith(info.phoneNumber,'010')}" th:text="${info.phoneNumber}"></span> 
+						<span th:unless="${#strings.startsWith(info.phoneNumber,'010')}">유효하지 않은 전화번호</span>
 					</td>
-
-
-					<td th:text="${#strings.replace(info.nationality,'시대','-')}">삼국-촉한</td>
-
+					<td th:text="${#strings.replace(info.nationality,'시대',' - ')}">삼국-촉한</td>
 					<td>
-					<span th:utext="|<b>${#strings.arraySplit(info.email, '@')[0]}</b>@${#strings.arraySplit(info.email, '@')[1]}|">abc@naver.com</span>
-					</td>
-
-					<td>
-					<span th:if="${#strings.length(info.introduce) > 15}" th:text="|${info.introduce}...|">저는~</span>
-					<span th:unless="${#strings.length(info.introduce) > 15}" th:text="${info.introduce}">저는~</span>
+						<span th:utext="|<b>${#strings.arraySplit(info.email, '@')[0]}</b>@${#strings.arraySplit(info.email, '@')[1]}|">abc@naver.com</span>
 					</td>
 					
+					<td th:text="|${#strings.abbreviate(info.introduce,15)}...|">안녕하세요</td>
+					
+					<!-- 
+					<td>
+						<span th:if="${#strings.length(info.introduce) > 15}" th:text="|${info.introduce}...|">저는~</span>
+						<span th:unless="${#strings.length(info.introduce) > 15}" th:text="${info.introduce}">저는~</span>
+					</td>
+					 -->
+					 
 				</tr>
 			</tbody>
 		</table>

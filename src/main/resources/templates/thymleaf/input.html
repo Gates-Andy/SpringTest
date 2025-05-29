@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>날씨 입력 페이지</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="/thymleaf/stylesheet2.css">
+</head>
+<body>
+	<div id="wrap">
+		<header> </header>
+
+		<section class="contents d-flex">
+
+			<nav class="main-menu bg-primary">
+
+				<div class="justify-content-center mt-3">
+
+					<img width="100"
+						src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Korea_Meteorological_Administration_Logo_%28vertical%29.svg/512px-Korea_Meteorological_Administration_Logo_%28vertical%29.svg.png">
+
+					<ul class="nav flex-column font-weight-bold">
+						<li class="nav-item"><a class="nav-link text-white" href="#">날씨</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">날씨입력</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">테마날씨</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">관측 기후</a></li>
+					</ul>
+					
+				</div>
+				
+			</nav>
+
+			<article class="main-contents">
+			
+				<h3>날씨 입력</h3>
+				
+				<div class="d-felx mt-3">
+				
+				<label>날짜</label>
+				<input type="text" name="date">
+				
+				<label>날씨</label>
+				<select>
+					<option>맑음</option>
+				</select>
+				
+				<label>미세먼지</label>
+				<select >
+					<option>좋음</option>
+				</select>
+				
+				</div>
+				
+				<div class="d-flex mt-3">
+				
+				<label>기온</label>
+				<input type="text" >
+				
+				<label>강수량</label>
+				<input type="text" >
+				
+				<label>풍속</label>
+				<input type="text" >
+				
+				</div>				
+				
+				<button type="submit" class="justify-contents-end btn btn primary mt-3">저장</button>
+			</article>
+
+		</section>
+
+
+		<footer>
+			<div class="d-flex">
+				<img width="50"
+					src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Korea_Meteorological_Administration_Logo_%28vertical%29.svg/512px-Korea_Meteorological_Administration_Logo_%28vertical%29.svg.png">
+				(07062)서울시 동작구 여의대방로 16길 61 <br> Copyright@2020 KMA. ALL RIGHTS
+				RESERVED.
+			</div>
+		</footer>
+
+
+	</div>
+</body>
+</html>

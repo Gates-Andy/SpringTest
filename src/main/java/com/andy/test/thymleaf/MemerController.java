@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.andy.test.thymleaf.domain.Member;
+
 @Controller
-public class MemerClass {
+public class MemerController {
 	@GetMapping("/thymleaf/test03")
 	public String test03(Model model) {
 		
