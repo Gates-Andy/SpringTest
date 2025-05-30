@@ -13,13 +13,14 @@ public class WeatherService {
 	@Autowired
 	private WeatherRepository weatherRepository;
 	
-	//모든 날씨 정보 리스트 얻어오기
+	//1. 모든 날씨 정보 리스트 얻어오기	
 	public List<Weather> getWeather(){
-		
-		List<Weather> weather = weatherRepository.selectWheather();
-		
+		List<Weather> weather = weatherRepository.selectWeather();
 		return weather;
-		
+	}
+	
+	public void addWeather(Weather weather) {
+	    weatherRepository.insertWeather(weather);
 	}
 	
 }

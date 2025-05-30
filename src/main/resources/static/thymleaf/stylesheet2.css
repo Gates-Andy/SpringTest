@@ -1,22 +1,35 @@
 @charset "UTF-8";
 
 #wrap {
-    width: 1200px;
-    margin : 0 auto;
+  width: 1200px;
+  margin: 0 auto;
+  /* 높이는 auto로 기본 유지 */
 }
 
 .contents{
-	height : 500px;
+	.contents {
+  /* height: 500px;  제거 */
+  min-height: 500px; /* 내용이 500px 이상이면 그 이상으로 늘어남 */
+  display: flex; /* 이미 html에 d-flex 있어서 없어도 될 수 있음 */
+}
 }
 
-.contents > main-menu{
-	width: 200px;
+.contents > .main-menu {
+  width: 200px;
 }
 
-.contents > main-contents{
-	width: 1000px;
+.contents > .main-contents {
+  width: 1000px;
+  padding-left: 20px;
 }
 
 footer{
-	height : 50px;
+	footer {
+  height: 50px;
+  background-color: #f1f1f1; /* 임의 배경색 */
+  padding: 10px;
+  text-align: center;
+  margin-top: 20px; /* 본문과 약간 간격 */
+  clear: both; /* 혹시 float 있을 때 깨끗하게 */
+}
 }

@@ -6,7 +6,7 @@ public class Weather {
 	private int id;
 	private LocalDateTime date;
 	private String weather;
-	private double tempertaures;
+	private double temperatures;
 	private double precipitation;
 	private String microDust;
 	private double windSpeed;
@@ -37,12 +37,12 @@ public class Weather {
 		this.weather = weather;
 	}
 
-	public double getTempertaures() {
-		return tempertaures;
+	public double getTemperatures() {
+		return temperatures;
 	}
 
-	public void setTempertaures(double tempertaures) {
-		this.tempertaures = tempertaures;
+	public void setTemperatures(double temperatures) {
+		this.temperatures = temperatures;
 	}
 
 	public double getPrecipitation() {

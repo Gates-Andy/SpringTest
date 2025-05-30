@@ -8,5 +8,9 @@ import com.andy.test.thymleaf.domain.Weather;
 
 @Mapper
 public interface WeatherRepository {
-	public List<Weather> selectWheather();
+	//1
+	public List<Weather> selectWeather();
+    
+	public int insertWeather(Weather weather);
+	
 }
