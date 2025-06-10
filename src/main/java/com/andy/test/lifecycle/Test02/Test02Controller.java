@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/lifecycle/test02")
 public class Test02Controller {
 
-	@RequestMapping("/1")
+	@GetMapping("/1")
 	public List<Map<String, Object>> listMapResponse() {
 
 		List<Map<String, Object>> movieList = new ArrayList<>();
@@ -60,7 +61,7 @@ public class Test02Controller {
 		return movieList;
 	}
 
-	@RequestMapping("/2") 
+	@GetMapping("/2") 
 	public List<Test02userBoard> userBoardResponse() {
 		
 		Test02userBoard userBoard1 = new Test02userBoard("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
@@ -86,12 +87,12 @@ public class Test02Controller {
 //		return postList;
 //	}
 	
-	@RequestMapping("/3") 
+	@GetMapping("/3") 
 	public ResponseEntity<Post> entityResponse(){
 		
 		Post post = new Post("안녕하세요 가입인사 드립니다.", "hangulu","안녕하세요 가입했어요 앞으로 잘 부탁 드립니다. 활동 열심히 하겠습니다.");
 		
-		ResponseEntity entity = new ResponseEntity<>(post,HttpStatus.INTERNAL_SERVER_ERROR);
+		ResponseEntity<Post> entity = new ResponseEntity<>(post,HttpStatus.INTERNAL_SERVER_ERROR);
 		//	ResponseEntity는 HTTP 응답 전체를 표현하는 스프링 객체로, 본문(body)에 데이터(post), 상태 코드(HttpStatus.INTERNAL_SERVER_ERROR) 등을 포함할 수 있어요.
 		
 		return entity;
