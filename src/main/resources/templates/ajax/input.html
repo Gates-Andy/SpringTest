@@ -3,24 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <title>즐겨찾기 추가하기</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: white;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px 50px;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 450px;
+        backdrop-filter: blur(10px);
+    }
+    label {
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: block;
+        margin-top: 20px;
+        text-align: left;
+        color: #e0e7ff;
+    }
+    input[type="text"] {
+        border: none;
+        border-radius: 8px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        margin-top: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        outline: none;
+        transition: background-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+        background-color: #f0f4ff;
+        color: #333;
+    }
+    button {
+        margin-top: 30px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        background-color: #ffc107;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        color: #333;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #ffca2c;
+        color: #111;
+    }
+</style>
+
 </head>
 <body>
+	<div class="container text-center">
+		<label for="nameInput">제목</label> 
+		<input type="text" id="nameInput" placeholder="제목을 입력하세요"><br>
 
-	<label>제목</label>
-	<input type="text" id="nameInput"> 	<br>
+		<label for="urlInput">주소</label>
+		<input type="text" id="urlInput" placeholder="http:// 또는 https:// 포함"><br>
 
-	<label>주소</label>
-	<input type="text" id="urlInput"> <br>
-
-	<button type="button" id="addBtn">추가</button>
-
-	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<button type="button" id="addBtn">추가</button>
+	</div>
 	
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
 	<script>
 		$("#addBtn").on("click", function() {
 			let name = $("#nameInput").val().trim();
 			let url = $("#urlInput").val().trim();
-
+			
 			if (name == "") {
 				alert("제목을 입력하세요");
 				return;
@@ -29,10 +93,14 @@
 				alert("주소를 입력하세요");
 				return;
 			}
+			if(!url.startsWith("http://") && !url.startsWith("https://")){
+				alert("잘못된 규격의 주소입니다.");
+				return;
+			}
 			
 			$.ajax({
 				type : "Post",
-				url : "/ajax/page/add",
+				url : "/ajax/favorite/create",
 				data : {
 					"name" : name,
 					"url" : url

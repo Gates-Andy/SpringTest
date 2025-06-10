@@ -1,10 +1,12 @@
 package com.andy.test.ajax;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,20 +17,30 @@ import com.andy.test.ajax.domain.Favorite;
 import com.andy.test.ajax.service.FavoriteService;
 
 @Controller
-@RequestMapping("/ajax/page")
+@RequestMapping("/ajax/favorite")
 public class FavoriteController {
 
 	@Autowired
 	private FavoriteService favoriteService;
 
-	@PostMapping("/add")
-	@ResponseBody
-	public Map<String, String> addPage(@RequestParam("name") String name, @RequestParam("url") String url) {
-		Favorite favorite = new Favorite();
-		favorite.setName(name);
-		favorite.setUrl(url);
+	// 1 /ajax/favorite/list (GET) → 리스트 페이지 반환
+	@GetMapping("/list")
+	public String favoriteList(Model model) {
 
-		int count = favoriteService.addFavorite(favorite);
+		List<Favorite> favoriteList = favoriteService.getFavoriteList();
+
+		model.addAttribute("favoriteList", favoriteList);
+
+		return "ajax/list";
+
+	}
+
+	// 2 즐겨찾기 추가 API /ajax/favorite/create (POST) → 즐겨찾기 추가 처리 (JSON 응답)
+	@ResponseBody
+	@PostMapping("/create")
+	public Map<String, String> createFavorite(@RequestParam("name") String name, @RequestParam("url") String url) {
+
+		int count = favoriteService.addFavorite(name, url);
 
 		Map<String, String> resultMap = new HashMap<>();
 		if (count == 1) {
@@ -36,14 +48,15 @@ public class FavoriteController {
 		} else {
 			resultMap.put("result", "fail");
 		}
+
 		return resultMap;
 	}
-	
+	//3 templates/ajax/input.html 
 	@GetMapping("/input")
-	public String test01() {
+	public String inputFavoriteForm() {
 		
-		return "/ajax/input";
+		return "ajax/input"; 
 		
 	}
-	
+
 }
