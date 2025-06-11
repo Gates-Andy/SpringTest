@@ -3,118 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <title>즐겨찾기 추가하기</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-<style>
-    body {
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
-        font-family: 'Noto Sans KR', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .container {
-        background: rgba(255, 255, 255, 0.1);
-        padding: 40px 50px;
-        border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        max-width: 450px;
-        backdrop-filter: blur(10px);
-    }
-    label {
-        font-size: 1.2rem;
-        font-weight: 600;
-        display: block;
-        margin-top: 20px;
-        text-align: left;
-        color: #e0e7ff;
-    }
-    input[type="text"] {
-        border: none;
-        border-radius: 8px;
-        padding: 12px 15px;
-        font-size: 1rem;
-        margin-top: 8px;
-        width: 100%;
-        box-sizing: border-box;
-        outline: none;
-        transition: background-color 0.3s ease;
-    }
-    input[type="text"]:focus {
-        background-color: #f0f4ff;
-        color: #333;
-    }
-    button {
-        margin-top: 30px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        background-color: #ffc107;
-        border: none;
-        width: 100%;
-        padding: 12px;
-        border-radius: 8px;
-        color: #333;
-        transition: background-color 0.3s ease;
-    }
-    button:hover {
-        background-color: #ffca2c;
-        color: #111;
-    }
-</style>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
-<body>
-	<div class="container text-center">
-		<label for="nameInput">제목</label> 
-		<input type="text" id="nameInput" placeholder="제목을 입력하세요"><br>
 
-		<label for="urlInput">주소</label>
-		<input type="text" id="urlInput" placeholder="http:// 또는 https:// 포함"><br>
+<body>
+	<div class="container">
+		<label>제목</label> <br> 
+		<input type="text" class="form-control col-8" id="nameInput" placeholder="제목을 입력하세요"><br> 
+		
+		<label>주소</label><br> 
+		
+		<div class="d-flex">
+			<input type="text" class="form-control col-8"  id="urlInput" placeholder="http:// 또는 https:// 포함해서"><br>
+			<button type="button" id="duplicateBtn">중복 확인</button>
+		</div>
+		
+		<div class="d-flex"> <!-- 중복확인 버튼을 눌렀을 때 활성화 -->
+			<div class="small text-danger d-none" id="duplicateText">중복된 url입니다.</div>
+			<div class="small text-primary d-none" id="availableText">중복되지않은 url입니다</div>
+		</div>
 
 		<button type="button" id="addBtn">추가</button>
+		
 	</div>
-	
+
 	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
 	<script>
-		$("#addBtn").on("click", function() {
-			let name = $("#nameInput").val().trim();
+		$("#duplicateBtn").on("click", function() {
 			let url = $("#urlInput").val().trim();
-			
-			if (name == "") {
-				alert("제목을 입력하세요");
-				return;
-			}
+
 			if (url == "") {
 				alert("주소를 입력하세요");
 				return;
 			}
-			if(!url.startsWith("http://") && !url.startsWith("https://")){
+			if (!url.startsWith("http://") && !url.startsWith("https://")) {
 				alert("잘못된 규격의 주소입니다.");
 				return;
 			}
+
+			$.ajax({type : "POST", url : "/ajax/favorite/duplicate-url", data : {"url" : url}
 			
-			$.ajax({
-				type : "Post",
-				url : "/ajax/favorite/create",
-				data : {
-					"name" : name,
-					"url" : url
-				},
-				success : function(response) {
+				,success : function(response) {
+					
+					if (response.isDuplicate) {
+						
+						$("#duplicateText").removeClass("d-none");
+						$("#availableText").addClass("d-none");
+						
+					} else {
+						$("#availableText").removeClass("d-none");
+						$("#duplicateText").addClass("d-none");
+					}
+				}
+				
+				,error : function() {
+					alert("중복확인 에러");
+				}
+				
+			});
+			
+		});
+
+		$("#addBtn").on("click", function() {
+			let name = $("#nameInput").val().trim();
+			let url = $("#urlInput").val().trim();
+
+			if (name == "") {
+				alert("제목을 입력하세요");
+				return;
+			}
+			
+			if (url == "") {
+				alert("주소를 입력하세요");
+				return;
+			}
+			
+			if (!url.startsWith("http://") && !url.startsWith("https://")) {
+				alert("잘못된 규격의 주소입니다.");
+				return;
+			}
+
+			$.ajax({type : "Post", url : "/ajax/favorite/create", data : {"name" : name, "url" : url}
+			
+			,success : function(response) {
 					if (response.result == "success") {
 						alert("페이지가 성공적으로 추가되었습니다.");
 					} else {
 						alert("페이지 추가 실패!");
 					}
-				},
-				error : function() {
+				}
+			
+			,error : function() {
 					alert("서버 오류로 인해 페이지 추가에 실패했습니다.");
 				}
+			
 			});
 		});
 	</script>

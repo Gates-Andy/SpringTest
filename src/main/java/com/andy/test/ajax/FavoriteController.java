@@ -59,4 +59,27 @@ public class FavoriteController {
 		
 	}
 
+	@ResponseBody
+	@PostMapping("/duplicate-url")
+	public Map<String, Boolean> isDuplicateUrl(@RequestParam("url") String url) {
+
+		Map<String, Boolean> resultMap = new HashMap<>(); // 응답을 만들어주는 API를 json을 만들기위한 responsebody Map 
+		// 중복됨 : {"isDuplicate":true}
+		// 중복안됨 :{"isDuplicate":false}
+
+		if (favoriteService.isDuplicateUrl(url)) {
+			
+			// 중복됨
+			resultMap.put("isDuplicate", true);
+			
+		} else {
+			
+			// 중복 안됨
+			resultMap.put("isDuplicate", false);
+
+		}
+		return resultMap;
+	}
+	
+	
 }

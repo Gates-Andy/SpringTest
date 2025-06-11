@@ -14,5 +14,8 @@ public interface FavoriteRepository {
 
 	// 2
 	public int insertFavoriteList(@Param("name")String name, @Param("url")String url);
+	
+	// 3
+	public int selectCountByUrl(@Param("url") String url);
 
 }

@@ -22,14 +22,29 @@ public class FavoriteService {
 		return favoriteList;
 
 	}
+
 	// 2
 	public int addFavorite(String name, String url) {
-		
+
 		int count = favoriteRepository.insertFavoriteList(name, url);
-		
+
 		return count;
 	}
 	
-	
+	//3
+	public boolean isDuplicateUrl(String url) {
+
+		int count = favoriteRepository.selectCountByUrl(url); // 리포지터리에서 그 이메일이 검색이되면 1이 뜰거고 0이면 없다는 뜻일것
+
+		if (count == 0) { // 0이라는 count는 이메일이 사용가능하다는 뜻
+
+			return false;
+
+		} else {
+
+			return true;
+
+		}
+	}
 
 }
