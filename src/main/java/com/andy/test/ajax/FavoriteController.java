@@ -43,43 +43,66 @@ public class FavoriteController {
 		int count = favoriteService.addFavorite(name, url);
 
 		Map<String, String> resultMap = new HashMap<>();
+
 		if (count == 1) {
 			resultMap.put("result", "success");
+
 		} else {
+
 			resultMap.put("result", "fail");
+
 		}
 
 		return resultMap;
 	}
-	//3 templates/ajax/input.html 
+
+	// 3 templates/ajax/input.html
 	@GetMapping("/input")
 	public String inputFavoriteForm() {
-		
-		return "ajax/input"; 
-		
+
+		return "ajax/input";
+
 	}
 
 	@ResponseBody
 	@PostMapping("/duplicate-url")
 	public Map<String, Boolean> isDuplicateUrl(@RequestParam("url") String url) {
 
-		Map<String, Boolean> resultMap = new HashMap<>(); // 응답을 만들어주는 API를 json을 만들기위한 responsebody Map 
+		Map<String, Boolean> resultMap = new HashMap<>(); // 응답을 만들어주는 API를 json을 만들기위한 responsebody Map
 		// 중복됨 : {"isDuplicate":true}
 		// 중복안됨 :{"isDuplicate":false}
 
 		if (favoriteService.isDuplicateUrl(url)) {
-			
+
 			// 중복됨
 			resultMap.put("isDuplicate", true);
-			
+
 		} else {
-			
+
 			// 중복 안됨
 			resultMap.put("isDuplicate", false);
 
 		}
 		return resultMap;
 	}
-	
-	
+
+	@ResponseBody
+	@GetMapping("/delete")
+	public Map<String, String> deleteFavorite(@RequestParam("id") int id) {
+		
+		int count = favoriteService.deleteFavoriteById(id);
+
+		Map<String, String> resultMap = new HashMap<>();
+
+		if (count == 1) { // count의 개수가 지워졌다는건 1이라는 거임 0이 아니라
+			resultMap.put("result", "success");
+			
+		} else {
+			
+			resultMap.put("result", "fail");
+			
+		}
+
+		return resultMap;
+	}
 }

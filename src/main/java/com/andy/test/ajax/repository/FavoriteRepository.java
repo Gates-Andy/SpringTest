@@ -13,9 +13,12 @@ public interface FavoriteRepository {
 	public List<Favorite> selectFavoriteList();
 
 	// 2
-	public int insertFavoriteList(@Param("name")String name, @Param("url")String url);
-	
+	public int insertFavoriteList(@Param("name") String name, @Param("url") String url);
+
 	// 3
 	public int selectCountByUrl(@Param("url") String url);
+
+	// 4
+	public int deleteFavoriteById(@Param("id") int id);
 
 }

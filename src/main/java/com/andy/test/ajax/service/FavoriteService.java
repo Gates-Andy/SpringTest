@@ -30,8 +30,8 @@ public class FavoriteService {
 
 		return count;
 	}
-	
-	//3
+
+	// 3
 	public boolean isDuplicateUrl(String url) {
 
 		int count = favoriteRepository.selectCountByUrl(url); // 리포지터리에서 그 이메일이 검색이되면 1이 뜰거고 0이면 없다는 뜻일것
@@ -47,4 +47,10 @@ public class FavoriteService {
 		}
 	}
 
+	// 4
+	public int deleteFavoriteById(int id) {
+		
+		return favoriteRepository.deleteFavoriteById(id);
+		
+	}
 }

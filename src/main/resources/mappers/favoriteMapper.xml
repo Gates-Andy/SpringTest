@@ -32,10 +32,19 @@
 	<select id="selectCountByUrl" parameterType="string"
 		resultType="int">
 		SELECT
-			count(*)
+		count(*)
 		FROM
-			`favorite`
+		`favorite`
 		Where
-			`url`=#{url}
+		`url`=#{url}
 	</select>
+
+	<delete id="deleteFavoriteById" parameterType="int">
+		DELETE
+		FROM
+		`favorite`
+		WHERE
+		`id` = #{id}
+	</delete>
+	
 </mapper>
