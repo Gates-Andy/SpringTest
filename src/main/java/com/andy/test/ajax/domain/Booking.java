@@ -3,6 +3,7 @@ package com.andy.test.ajax.domain;
 import java.time.LocalDateTime;
 
 public class Booking {
+	private int id;
 	private String name;
 	private int headcount;
 	private int day;
@@ -11,6 +12,14 @@ public class Booking {
 	private String state;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

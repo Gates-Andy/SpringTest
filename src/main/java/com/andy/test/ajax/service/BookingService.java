@@ -1,5 +1,6 @@
 package com.andy.test.ajax.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,4 +22,20 @@ public class BookingService {
 		
 	}
 	
+	public int addBooking(String name
+			, LocalDate date
+			, int day
+			, int headcount
+			, String phoneNumber){
+		
+		int count = BookingRepository.insertBooking(name,date,day,headcount,phoneNumber);
+		
+		return count;
+	}
+	
+	public int deleteBookingById(int id) {
+		
+		return BookingRepository.deleteBookingById(id);
+		
+	}
 }

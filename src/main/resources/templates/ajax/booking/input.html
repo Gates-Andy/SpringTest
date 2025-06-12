@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>통나무 팬션 예약</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #f4f4f4;
+}
+
+#wrap {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	max-width: 1200px;
+	margin: 0 auto;
+	background-color: #ffffff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+	height: 100px;
+	background-color: #6b4f29;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+nav {
+	height: 50px;
+	background-color: #a0522d;
+}
+
+nav a {
+	color: white !important;
+	font-weight: bold;
+}
+
+.main-contents {
+	flex: 1;
+	padding: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contents {
+	background-color: #f8f9fa;
+	padding: 30px;
+	border-radius: 10px;
+	width: 100%;
+	max-width: 500px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+	background-color: #eee;
+	padding: 20px;
+	font-size: 0.9rem;
+	color: #555;
+}
+</style>
+
+</head>
+<body>
+	<div id="wrap">
+
+		<header class="d-flex justify-content-center align-items-center">
+			<div class="display-4">통나무 팬션</div>
+		</header>
+
+
+		<nav class="main-menu">
+			<ul class="nav nav-fill">
+				<li class="nav-item"><a href="#" class="nav-link text-dark">팬션소개</a></li>
+				<li class="nav-item"><a href="#" class="nav-link text-dark">객실보기</a></li>
+				<li class="nav-item"><a href="#" class="nav-link text-dark">예약안내</a></li>
+				<li class="nav-item"><a href="#" class="nav-link text-dark">커뮤니티</a></li>
+			</ul>
+		</nav>
+
+
+		<section class="main-contents">
+			<div class="contents text-center col-8">
+
+				<h3>예약 하기</h3>
+				<label>이름</label><br> <input type="text" id="nameInput"><br>
+
+				<label>예약날짜</label><br> <input type="text" id="dateInput"><br>
+
+				<label>숙박일수</label><br> <input type="text" id="dayInput"><br>
+
+				<label>숙박인원</label><br> <input type="text" id="headcountInput"><br>
+
+				<label>전화번호</label><br> <input type="text"
+					id="phoneNumberInput"><br>
+
+				<button type="button" class="mt-3 btn btn-warning" id="bookingBtn">예약하기</button>
+
+			</div>
+		</section>
+
+		<footer class="text-secondary mt-3 ml-5">
+			<div class="justify-contents-start small text-secondary">
+				제주특별차치도 제주시 애월읍 <br> 사업자등록번호:111-22-255222/농어촌민박사업지정/대표:김통목<br>
+				Copyright2025tongnamu All right reserved<br>
+			</div>
+		</footer>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script>
+		$("#bookingBtn").on("click", function() {
+			let name = $("#nameInput").val().trim();
+			let date = $("#dateInput").val().trim();
+			let day = $("#dayInput").val().trim();
+			let headcount = $("#headcountInput").val().trim();
+			let phoneNumber = $("#phoneNumberInput").val().trim();
+
+			if (name == "") {
+				alert("이름을 확인하세요");
+				return;
+			}
+
+			if (date == "") {
+				alert("예약날짜를 입력하세요");
+				return;
+			}
+
+			if (isNaN(day)) {
+				alert("숙박일수를 정확히 입력하세요");
+				return;
+			}
+
+			if (isNaN(headcount)) {
+				alert("숙박 인원을 정확히 입력하세요");
+				return;
+			}
+
+			if (phoneNumber == "") {
+				alert("전화번호를 입력하세요");
+				return;
+			}
+
+			$.ajax({
+				type : "get",
+				url : "/ajax/booking/create",
+				data : {
+					"name" : name,
+					"date" : date,
+					"day" : day,
+					"headcount" : headcount,
+					"phoneNumber" : phoneNumber
+				},
+				success: function(response) {
+					if (response.result === "success") {
+						
+						alert("예약이 완료되었습니다!");
+						
+						location.href = "/ajax/booking/list"; 
+						
+					} else {
+						
+						alert("예약 실패!");
+						
+					}
+				},
+			});
+			
+		});
+	</script>
+</body>
+</html>

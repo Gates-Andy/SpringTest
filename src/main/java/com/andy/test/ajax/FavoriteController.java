@@ -31,7 +31,7 @@ public class FavoriteController {
 
 		model.addAttribute("favoriteList", favoriteList);
 
-		return "ajax/list";
+		return "ajax/favorite/list";
 
 	}
 
@@ -60,7 +60,7 @@ public class FavoriteController {
 	@GetMapping("/input")
 	public String inputFavoriteForm() {
 
-		return "ajax/input";
+		return "ajax/favorite/input";
 
 	}
 
