@@ -1,6 +1,6 @@
 package com.andy.test.ajax;
 
-import java.time.LocalDate;
+import java.time.LocalDate; 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +90,16 @@ public class BookingController {
 		}
 
 		return resultMap;
+
+	}
+
+	@ResponseBody
+	@GetMapping("/search") // 에러고치느라 수업을 못들음
+	public Booking searchBooking(@RequestParam("name") String name, @RequestParam("phoneNumber") String phoneNumber) {
+
+		Booking booking = BookingService.getBooking(name, phoneNumber);
+
+		return booking;
 
 	}
 

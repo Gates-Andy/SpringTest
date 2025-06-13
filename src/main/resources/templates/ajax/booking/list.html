@@ -110,7 +110,8 @@ footer {
 							<h5 th:case="대기중" class="text-primary">대기중</h5>
 							<h5 th:case="확정" class="text-success">확정</h5>
 						</td>
-						<td><button type="button" th:value="${booking.id}" class="btn btn-danger btn-sm delete-btn">삭제</button></td>
+						<td><button type="button" th:value="${booking.id}"
+								class="btn btn-danger btn-sm delete-btn">삭제</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -132,7 +133,7 @@ footer {
 	<script>
 		$(".delete-btn").on("click", function() {
 			let id = $(this).val();
-			let button = $(this); 
+			let button = $(this);
 
 			$.ajax({
 				type : "get",

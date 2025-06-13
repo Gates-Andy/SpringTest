@@ -162,21 +162,21 @@ footer {
 					"headcount" : headcount,
 					"phoneNumber" : phoneNumber
 				},
-				success: function(response) {
+				success : function(response) {
 					if (response.result === "success") {
-						
+
 						alert("예약이 완료되었습니다!");
-						
-						location.href = "/ajax/booking/list"; 
-						
+
+						location.href = "/ajax/booking/list";
+
 					} else {
-						
+
 						alert("예약 실패!");
-						
+
 					}
 				},
 			});
-			
+
 		});
 	</script>
 </body>

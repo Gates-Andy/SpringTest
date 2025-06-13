@@ -15,27 +15,31 @@ public class BookingService {
 	private BookingRepository BookingRepository;
 
 	public List<Booking> getBooking() {
-		
+
 		List<Booking> Booking = BookingRepository.selectBooking();
-		
+
 		return Booking;
-		
+
 	}
-	
-	public int addBooking(String name
-			, LocalDate date
-			, int day
-			, int headcount
-			, String phoneNumber){
-		
-		int count = BookingRepository.insertBooking(name,date,day,headcount,phoneNumber);
-		
+
+	public int addBooking(String name, LocalDate date, int day, int headcount, String phoneNumber) {
+
+		int count = BookingRepository.insertBooking(name, date, day, headcount, phoneNumber);
+
 		return count;
+
 	}
-	
+
 	public int deleteBookingById(int id) {
-		
+
 		return BookingRepository.deleteBookingById(id);
-		
+
+	}
+
+	public Booking getBooking(String name, String phoneNumber) {
+
+		List<Booking> bookingList = BookingRepository.selectBookingByNameAndPhone(name, phoneNumber);
+
+		return bookingList.isEmpty() ? null : bookingList.get(0);
 	}
 }
